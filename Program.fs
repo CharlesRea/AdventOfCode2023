@@ -45,6 +45,7 @@ let main argv =
 
     match day with
     | 1 -> print Day1.solve
+    | 2 -> print Day2.solve
     | _ -> failwith "Invalid day"
 
     0

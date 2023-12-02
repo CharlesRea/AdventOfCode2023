@@ -32,8 +32,12 @@ let (|ParseRegex|_|) regex str =
 let splitString (separator: string) (str: string) : string[] =
     str.Split([| separator |] |> Seq.toArray, StringSplitOptions.None)
 
-let printSequence (value: 'a seq) =
-    value |> Seq.toList |> List.iter (printf "%A\r\n")
+let printSequence (value: 'a seq): 'a seq =
+    value |>
+    Seq.map (fun x ->
+        printf $"%A{x}\n"
+        x
+    )
 
 let replaceArrayElement (index: int) (newValue: 'a) (array: 'a array) : 'a array =
     seq { for i in 0 .. array.Length - 1 -> if i = index then newValue else array.[i] }
