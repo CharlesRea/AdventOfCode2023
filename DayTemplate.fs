@@ -1,6 +1,9 @@
 module DayTemplate
 
+open System
 open System.IO
+open System.Text.RegularExpressions
+open Common
 
 let input = File.ReadLines("./00/input.txt")
 

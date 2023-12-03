@@ -5,16 +5,23 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="Readme.md" />
     <Content Include=".gitignore" />
     <Compile Include="Common.fs" />
+    <Compile Include="Grid.fs" />
     <Compile Include="Solver.fs" />
     <Compile Include="DayTemplate.fs" />
     <Compile Include="01\1.fs" />
     <Content Include="01\input.txt" />
     <Compile Include="02\2.fs" />
     <Content Include="02\input.txt" />
+    <Compile Include="03\3.fs" />
+    <Content Include="03\input.txt" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
