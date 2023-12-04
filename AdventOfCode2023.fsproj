@@ -22,6 +22,8 @@
     <Content Include="02\input.txt" />
     <Compile Include="03\3.fs" />
     <Content Include="03\input.txt" />
+    <Compile Include="04\4.fs" />
+    <Content Include="04\input.txt" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
