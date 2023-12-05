@@ -19,7 +19,7 @@ let parseNumbers (numbers: string) : int seq =
     numbers
     |> String.split [ " " ]
     |> Seq.map String.trimWhiteSpaces
-    |> Seq.choose parseInt
+    |> Seq.choose tryParseInt
 
 let parseCard (card: string): Card =
     match card with

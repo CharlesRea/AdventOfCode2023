@@ -14,7 +14,7 @@ let calibrate (getDigits: string -> int array): int =
     |> Seq.sum
 
 let partOne () =
-    calibrate (Seq.map (string >> parseInt) >> Seq.choose id >> Seq.toArray)
+    calibrate (Seq.map (string >> tryParseInt) >> Seq.choose id >> Seq.toArray)
 
 let digitValue =
     function

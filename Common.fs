@@ -11,15 +11,25 @@ let tryParseWith (tryParseFunc: string -> bool * _) =
         | true, v -> Some v
         | false, _ -> None
 
-let parseInt = tryParseWith Int32.TryParse
-let parseInt64 = tryParseWith Int64.TryParse
-let parseBigInt = tryParseWith BigInteger.TryParse
-let parseDouble = tryParseWith Double.TryParse
+let parseWith (tryParseFunc: string -> bool * 'a) (input: string) =
+    match (tryParseFunc input) with
+    | true, v -> v
+    | false, _ -> failwith $"Invalid input: {input}"
 
-let (|Int|_|) = parseInt
-let (|Int64|_|) = parseInt64
-let (|BigInteger|_|) = parseBigInt
-let (|Double|_|) = parseDouble
+let tryParseInt = tryParseWith Int32.TryParse
+let tryParseInt64 = tryParseWith Int64.TryParse
+let tryParseBigInt = tryParseWith BigInteger.TryParse
+let tryParseDouble = tryParseWith Double.TryParse
+
+let parseInt = parseWith Int32.TryParse
+let parseInt64 = parseWith Int64.TryParse
+let parseBigInt = parseWith BigInteger.TryParse
+let parseDouble = parseWith Double.TryParse
+
+let (|Int|_|) = tryParseInt
+let (|Int64|_|) = tryParseInt64
+let (|BigInteger|_|) = tryParseBigInt
+let (|Double|_|) = tryParseDouble
 
 let (|ParseRegex|_|) regex str =
     let m = Regex(regex).Match(str)
@@ -32,7 +42,7 @@ let (|ParseRegex|_|) regex str =
 let splitString (separator: string) (str: string) : string[] =
     str.Split([| separator |] |> Seq.toArray, StringSplitOptions.None)
 
-let printSequence (name: string) (value: 'a seq): 'a seq =
+let printSequence (name: string) (value: 'a seq) : 'a seq =
     printf $"{name}:\n"
     value |> Seq.iter (fun x -> printf $"%A{x}\n")
     printf "\n\n"

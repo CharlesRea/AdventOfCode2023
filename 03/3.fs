@@ -12,7 +12,7 @@ let height = input.Length
 
 let numbers: seq<(int*int) * int> =
     input
-    |> Seq.mapi (fun y line -> Regex("(\d+)").Matches line |> Seq.map (fun m -> ((m.Index, y), parseInt m.Value |> Option.get)))
+    |> Seq.mapi (fun y line -> Regex("(\d+)").Matches line |> Seq.map (fun m -> ((m.Index, y), tryParseInt m.Value |> Option.get)))
     |> Seq.concat
     
 let numberLength (value: int): int =
