@@ -27,6 +27,8 @@
     <Compile Include="05\5.fs" />
     <Content Include="05\input.txt" />
     <Compile Include="06\6.fs" />
+    <Compile Include="07\DayTemplate.fs" />
+    <Content Include="07\input.txt" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

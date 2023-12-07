@@ -82,3 +82,8 @@ let joinCharsToString (chars: char seq) : string =
     chars |> Seq.map string |> String.concat ""
 
 let reverseString x = x |> Seq.rev |> joinCharsToString
+
+let product lists = 
+    let folder list state =
+         state |> Seq.allPairs list |> Seq.map List.Cons 
+    Seq.singleton List.empty |> List.foldBack folder lists
