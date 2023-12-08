@@ -87,3 +87,7 @@ let product lists =
     let folder list state =
          state |> Seq.allPairs list |> Seq.map List.Cons 
     Seq.singleton List.empty |> List.foldBack folder lists
+    
+let rec gcd x y = if y = 0L then abs x else gcd y (x % y)
+
+let lcm x y = x * y / (gcd x y)
