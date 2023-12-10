@@ -30,7 +30,7 @@ module Part1 =
     let isPartNumber ((x, y), number: int) =
         let adjacentCoords =
             seq { x .. x + numberLength number }
-            |> Seq.collect (fun x -> Grid.neighbouringCoordinates (x, y))
+            |> Seq.collect (fun x -> Grid.neighbouringCoordinatesWithDiagonals (x, y))
             |> Set.ofSeq
             
         adjacentCoords
@@ -57,7 +57,7 @@ module Part2 =
     let gears =
         Seq.allPairs (seq { 0 .. width - 1 }) (seq { 0 .. height - 1 })
         |> Seq.filter (fun (x, y) -> input[y].[x] = '*')
-        |> Seq.map (fun gear -> Grid.neighbouringCoordinates gear |> Seq.choose (fun coord -> Map.tryFind coord numberCoords) |> Seq.distinct |> Seq.toArray)
+        |> Seq.map (fun gear -> Grid.neighbouringCoordinatesWithDiagonals gear |> Seq.choose (fun coord -> Map.tryFind coord numberCoords) |> Seq.distinct |> Seq.toArray)
         |> Seq.filter (fun partNumbers -> Array.length partNumbers = 2)
         
     printSequence "Gears" gears |> ignore
